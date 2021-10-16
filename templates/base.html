@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Social</title>
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/bootstrap-theme.min.css' %}">
+    
+    <script type="text/javascript" src="{% static 'simplesocial/js/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/simple.css' %}">
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/medium-editor.min.css'%}">
+
+    <script type="text/javascript" src="{% static 'simplesocial/js/medium-editor.min.js'%}"></script>
+
+</head>
+
+<body>
+    
+    <!-- <canvas id="canvas"> -->
+        
+        <nav class="navbar mynav" role="navigation" id="navbar">
+            <div class="container">
+                <a href=" {% url 'index' %} " class="navbar-brand mynav">Star Social</a>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'posts:all' %}">Posts</a></li>
+                    <li><a href="{% url 'posts:create' %}">Create Post</a></li>
+                    <li><a href="{% url 'groups:all' %}">Groups</a></li>
+                    <li><a href="{% url 'groups:create' %}">Create Group</a></li>
+                    <li><a href="{% url 'accounts:logout' %}">Log out: {{ user.username|capfirst }}</a></li>
+                
+                {% else %}
+                    <li><a href="{% url 'posts:all' %}">Posts</a></li>
+                    <li><a href="{% url 'groups:all' %}">Groups</a></li>
+                    <li><a href="{% url 'accounts:login' %}">Log in</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">Sign up</a></li>
+                {% endif %}
+            </ul>            
+                
+                    
+            </div>
+        </nav>
+        <div class="container">
+            {% block content %} 
+
+            {% endblock content %}
+            
+        </div>
+    </canvas>
+
+
+</body>
+<script src="{% static 'simplesocial/js/simple.js' %}"></script>
+</html>

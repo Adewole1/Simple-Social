@@ -1,0 +1,15 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap4 %}
+
+{% block post_content %}
+  <h3>Create New Post</h3>
+    <form id = 'postForm' action="{% url 'posts:create' %}" method="post" class="post-form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <input type="submit" value="Post" class="btn btn-primary btn-lg">
+    </form>
+
+<script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock post_content %}
